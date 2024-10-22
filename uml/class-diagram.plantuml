@@ -1,0 +1,79 @@
+@startuml
+
+title Class Diagram
+
+@enduml@startuml
+
+class User {
+  +int id
+  +int name
+  +string email
+  +string pasword
+  +Date dateJoined
+  -register()
+  -login()
+  -logout()
+  -updateProfile()
+}
+
+class Role {
+  +int id
+  +string label
+}
+
+class Ticket {
+  +int id
+  +float price
+  +string type
+}
+
+class TicketPurchase {
+  +int id
+  +DateTime purchaseTime
+  -history()
+  -purchase(ticketId)
+  -cancel()
+}
+
+enum TicketStatus {
+  valid
+  canceled
+}
+
+class Bus {
+  +int id
+  +string numBus
+  +int capacity
+}
+
+class LocalisationBus {
+  +int id
+  +Date localisationDate
+  +string longitude
+  +string latitude
+  -localisation(busId)
+}
+
+class Itinerary {
+  +int id
+  +string departurePt
+  +string arrivalPt
+}
+
+class Schedule {
+  +int id
+  +DateTime departureTime
+  +DateTime arrivalTime
+  -getSchedules()
+}
+
+User "0..*" -- "1" Role : Possesses >
+TicketPurchase "0..*" -- "1" User : Buys <
+TicketPurchase "0..*" -- "1" Ticket : Type of >
+TicketPurchase "0..*" -- "1" TicketStatus
+TicketPurchase "0..*" -- "1" Schedule : Reserves >
+Schedule "0..*" -- "1" Itinerary : Has >
+Schedule "0..*" -- "0..1" Bus : Is assigned <
+LocalisationBus "0..*" -- "1" Bus : Is located <
+
+@enduml
