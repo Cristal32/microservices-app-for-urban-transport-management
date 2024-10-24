@@ -87,5 +87,10 @@
   <modules>
   	<module>notification</module>
   	<module>auth</module>
+  	<module>ticket</module>
+  	<module>schedule</module>
+  	<module>geolocalisation</module>
+  	<module>subscription</module>
+  	<module>gateway</module>
   </modules>
 </project>
