@@ -1,0 +1,71 @@
+# Eclipse specific files
+.classpath
+.project
+.settings/
+bin/
+target/
+
+# IntelliJ specific files
+*.iml
+.idea/
+out/
+*.ipr
+*.iws
+
+# Maven build artifacts
+/target/
+!target/.gitkeep
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# IntelliJ / Maven specific
+mvnw
+mvnw.cmd
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# Lombok generated files
+**/*.lombok*
+
+# Local configuration files
+*.local
+*.env
+
+# Java class files
+*.class
+
+# Other files to ignore
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+
+# Javadoc
+**/javadoc/
+**/apidocs/
+
+# Backup files
+*~
+*.bak
+*.orig
+*.swp
+*.swo
+
+# User-specific files
+*.user
+
+# IDE specific project files (e.g. Visual Studio Code)
+.vscode/
+
