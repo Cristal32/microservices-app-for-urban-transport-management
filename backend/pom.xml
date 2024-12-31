@@ -92,5 +92,6 @@
   	<module>geolocalisation</module>
   	<module>subscription</module>
   	<module>gateway</module>
+  	<module>eureka-server</module>
   </modules>
 </project>

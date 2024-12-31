@@ -1,8 +1,13 @@
 package com.auth.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.auth.model.Role;
 
 public class RegisterUserDTO {
 	@NotBlank(message = "Name is required")
@@ -15,6 +20,9 @@ public class RegisterUserDTO {
 	@NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password should be at least 8 characters long")
 	private String password;
+	
+	@NotBlank(message = "Role is required")
+    private Set<Role> roles = new HashSet<>();  
 
 	// Getters and setters
     public String getName() { return name; }
@@ -26,4 +34,6 @@ public class RegisterUserDTO {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
+    public Set<Role> getRoles() { return roles; }
+    public void setRole(Set<Role> roles) { this.roles = roles; }
 }

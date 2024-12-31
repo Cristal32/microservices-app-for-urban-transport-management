@@ -1,8 +1,9 @@
 package com.auth.service;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import javax.persistence.EntityNotFoundException;
+import java.util.Set;
+
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.auth.dto.RegisterUserDTO;
 import com.auth.dto.UpdateUserDTO;
 import com.auth.exception.ResourceNotFoundException;
+import com.auth.model.Role;
 import com.auth.model.User;
+import com.auth.repository.RoleDao;
 import com.auth.repository.UserDao;
 
 @Service
@@ -19,13 +22,13 @@ public class AuthService {
 	private UserDao userDao;
 	
 	@Autowired
-	private UpdateUserDTO updateUserDTO;
-	
-	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-//	@Autowired
-//	private JwtService jwtService;
+	@Autowired
+	private JwtService jwtService;
+	
+	@Autowired
+	private RoleDao roleDao;
 	
 	// ---------------------- Map from DTO to user --------------------------
 	public User mapDtoToUser(RegisterUserDTO dto) {
@@ -33,6 +36,17 @@ public class AuthService {
 	    user.setName(dto.getName());
 	    user.setEmail(dto.getEmail());
 	    user.setPassword(dto.getPassword());
+	    
+	    Set<Role> roles = new HashSet<>();
+	    for (Role dtoRole : dto.getRoles()) {
+	        Role role = roleDao.findById(dtoRole.getId()) 
+	                .orElseThrow(() -> new RuntimeException("Role not found for ID: " + dtoRole.getId()));
+
+	        roles.add(role);  // Add the fetched role to the set
+	    }
+
+	    user.setRoles(roles);
+	    
 	    return user;
 	}
 	
@@ -44,11 +58,6 @@ public class AuthService {
 	// ---------------------- get a user by their id --------------------------
 	public User findUserById(Long id){
 		return userDao.findById(id).orElse(null);
-	}
-		
-	// ---------------------- get a user by their email --------------------------
-	public User findUserByUsername(String email){
-		return userDao.findByEmail(email).orElse(null);
 	}
 	
 	// ---------------------- save a user --------------------------
@@ -76,13 +85,13 @@ public class AuthService {
 //		return jwtService.generateToken(username);
 //	}
 	
-//	public String generateToken(String email) {
-//        User user = userDao.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
-//        return jwtService.generateToken(email, user.getRoles());
-//    }
+	public String generateToken(String email) {
+        User user = userDao.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        return jwtService.generateToken(email, user.getRoles());
+    }
 	
 	// ---------------------- validate the token --------------------------
-//	public void validateToken(String token) {
-//		jwtService.validateToken(token);
-//	}
+	public void validateToken(String token) {
+		jwtService.validateToken(token);
+	}
 }

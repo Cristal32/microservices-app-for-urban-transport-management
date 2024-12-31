@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "role_id", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "label", length = 100, unique = true)

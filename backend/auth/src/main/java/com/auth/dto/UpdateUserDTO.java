@@ -3,6 +3,9 @@ package com.auth.dto;
 import javax.validation.constraints.NotBlank;
 
 public class UpdateUserDTO {
+	@NotBlank(message = "Id is required")
+    private Long id;
+	
 	@NotBlank(message = "Name is required")
     private String name;
 	
