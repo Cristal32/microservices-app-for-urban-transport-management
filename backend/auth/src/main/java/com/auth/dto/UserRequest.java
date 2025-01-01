@@ -1,13 +1,10 @@
 package com.auth.dto;
 
-import java.util.HashSet;
 import java.util.Set;
-
 import com.auth.model.Role;
-import com.auth.model.User;
+//import com.auth.model.User;
 
 public class UserRequest {
-	private String name;
 	private String email;
     private String password;
     private Set<Role> roles;
@@ -16,18 +13,13 @@ public class UserRequest {
     public UserRequest() {}
 
     // All-args constructor
-    public UserRequest(String name, String email, String password, Set<Role> roles) {
-    	this.name = name;
+    public UserRequest(String email, String password, Set<Role> roles) {
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
     // Getters and setters
-    
-    // name
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
 
     // email
     public String getEmail() { return email; }
@@ -42,45 +34,39 @@ public class UserRequest {
     public void setRoles(Set<Role> roles) { this.roles = roles; }
     
     // Builder pattern
-    public static class Builder {
-        private Long id;
-        private String name;
-        private String email;
-        private String password;
-        private Set<Role> roles = new HashSet<>();
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-        
-        public Builder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder password(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder roles(Set<Role> roles) {
-            this.roles = roles;
-            return this;
-        }
-
-        public Builder addRole(Role role) {
-            this.roles.add(role);
-            return this;
-        }
-
-        public User build() {
-            return new User(id, name, email, password, roles);
-        }
-    }
+//    public static class Builder {
+//        private Long id;
+//        private String email;
+//        private String password;
+//        private Set<Role> roles = new HashSet<>();
+//
+//        public Builder id(Long id) {
+//            this.id = id;
+//            return this;
+//        }
+//        
+//        public Builder email(String email) {
+//            this.email = email;
+//            return this;
+//        }
+//
+//        public Builder password(String password) {
+//            this.password = password;
+//            return this;
+//        }
+//
+//        public Builder roles(Set<Role> roles) {
+//            this.roles = roles;
+//            return this;
+//        }
+//
+//        public Builder addRole(Role role) {
+//            this.roles.add(role);
+//            return this;
+//        }
+//
+//        public User build() {
+//            return new User(id, email, password, roles);
+//        }
+//    }
 }

@@ -62,8 +62,8 @@ public class AuthController {
         return ResponseEntity.ok(registeredUser);
     }
 	
-	@PostMapping("/getToken")
-	public ResponseEntity<String> getToken(@RequestBody UserRequest user) {
+	@PostMapping("/login")
+	public ResponseEntity<String> login(@RequestBody UserRequest user) {
 		// Tell the authManager to authenticate the request before giving out the token
 		Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 		
