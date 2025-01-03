@@ -37,6 +37,13 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+      <!-- Lombok dependency -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.20</version>
+        <scope>provided</scope>
+    </dependency>
       
       <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -53,6 +60,8 @@
 		  <groupId>org.springframework.boot</groupId>
       	  <artifactId>spring-boot-starter-test</artifactId>
       </dependency>
+    
+
     
     <!--<dependency>
         <groupId>org.springframework.cloud</groupId>
